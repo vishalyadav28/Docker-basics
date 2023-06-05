@@ -1,0 +1,141 @@
+# What is Docker?
+
+A Platform for consistently building, running, and shipping applications.
+
+
+    ## pros
+
+        Application will work same as it's working on other machine.
+
+# Problem Before Using Docker
+
+1. Versioning issue.
+2. One or more files missing.
+3. "Different configurations settings across platforms."
+
+
+##  With Docker we can package our application and run it anywhere on any machine with docker.
+
+
+## As Docker run independently so we can remove when every we wan to remove the images as it is not in use.
+
+ - docker-compose down --rmi all
+ 
+
+# Note
+
+- On windows we can run windows + linus containers.
+- On Linux machine we can run linux containers.
+
+
+# Containers vs VM
+
+1. An isolated environment running an application whereas VM is running on a physical machine.
+    -> Means VM needs to have a copy of OS whereas Container doesn't it share same Host os more accuratly share's't.
+
+What is Image?
+
+- Docker file contains all info about what things is needed by the project to get upend running. These requirements or package are 
+    present inside container in form of images.
+
+    for example - 
+    a container have image of python, node, anything else.
+
+
+## Our application is loaded inside the container.
+## To run any project instead of normal way we can use docker to run it
+- command to up
+'docker-compose up'
+
+- command to down
+'docker-compose down'
+
+- to run it in background
+
+- use 
+
+'docker-compose up/down -d'
+
+
+And we can push image to Docker registry (just like git/github)
+we can push that image to make it available to use by others.
+
+
+
+# Now for example (uploading an image)-
+
+- create a file any js/python/ruby/dart
+
+1. Start with os (in my case it is Linux)
+2. Install Python
+3. Copy app files
+4. Run day1.py file
+
+Run 
+
+- "docker build -t beginner-tutorial ."
+
+-t means tags
+. means current directory
+
+NOTE - beginner-tutorial is tag name (you can use other)
+
+Now to view the images
+
+docker image ls
+
+
+NOTE - in Dockerfile
+you can define the distribution you want like
+
+FROM  python:apline
+
+Now to run the docker image
+
+docker run image-name
+
+
+To get image from local 
+
+# docker run ubuntu 
+
+""Docker will check whether the image is locally present if yes use
+else pull from DockerHub.""
+
+
+# To check running process or running containers use
+
+- docker ps
+
+# To check stop container as well 
+
+- docker ps -a
+
+# To start a container and interact with it
+
+- docker run -it image-name
+
+-it means iteractive terminal
+
+# To get inside running container
+
+- docker exec -it <mycontainer> bash
+
+example -
+
+run docker image in interactive terminal
+
+sudo docker run -it beginner-tutorial
+
+
+# create image 
+
+example 
+
+sudo docker tag beginner-tutorial vishalyadav28/beginner-tutorial
+
+# push -
+
+example
+
+sudo docker push vishalyadav28/beginner-tutorial
