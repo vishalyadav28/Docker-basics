@@ -139,3 +139,27 @@ sudo docker tag beginner-tutorial vishalyadav28/beginner-tutorial
 example
 
 sudo docker push vishalyadav28/beginner-tutorial
+
+#updated Aug 24
+
+
+### remove/stop all containers
+
+- docker rm $(docker ps -aq)
+
+- docker stop $(docker ps -aq)
+
+
+rm means remove 
+ps means containers
+-a means all
+-q means display only ids
+
+### remove all images
+
+- docker rmi $(docker image -q)
+
+
+rmi means remove the images
+-q means get the image ids
+
