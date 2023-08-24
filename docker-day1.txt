@@ -163,3 +163,36 @@ ps means containers
 rmi means remove the images
 -q means get the image ids
 
+
+
+#=========================================================#
+
+# Docker compose
+
+
+# JSON(Javascript object notation)
+
+{
+    "name":"nobody",
+    "roles": ["developer","superadmin"],
+    "info": {
+        "firstname":"no",
+        "lastname":"body"
+    }
+    
+}
+
+
+# YAML              #starts with three hypens
+
+---
+
+name: nobody
+roles:
+    - developer
+    - superadmin
+info:
+    firstname: no
+    lastname: body
+
+#let's create docker-compose file 

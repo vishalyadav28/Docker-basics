@@ -1,0 +1,14 @@
+version: "3.8"
+services:
+  web:
+    build: ./docker-basics
+    ports:
+      - xxxx:xxxx
+  api:
+    build: ./backend
+    ports:
+      - xxxx:xxxx
+  db:
+    image: mongo:4.0-xenial
+    ports:
+      - xxxx:xxxx
