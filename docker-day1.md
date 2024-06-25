@@ -301,3 +301,102 @@ Step 3:
 - You can ping one conatiner with other but container must be running...
 
 
+- **Docker Volume :**
+  In this we can create the volume with custom name and volume created by default name are automatically destroyed when containers are destroyed.
+
+  ```
+  docker volume create volume-name
+  ```
+
+  **Volume Bind :**
+  
+  simply store the data or volume on the host machine to protect it from auto deletion at the time of conatiner deletion.
+  
+  **Example:**
+  ```
+  version: '3.9'
+
+    services:
+      service1:
+        image: image1:tag
+        volumes:
+          - data_volume:/path/to/store/data
+    
+      service2:
+        image: image2:tag
+        volumes:
+          - data_volume:/path/to/store/data
+    
+    volumes:
+      data_volume:
+        driver: local
+
+  ```
+
+  **OTHER WAY**
+  
+  Mount the volumn provide the custom name and change the file access to RO(Read only).
+
+  **Example:**
+
+```
+      version: '3.9'
+    
+    services:
+      app:
+        image: myapp:latest
+        build:
+          context: .
+          dockerfile: Dockerfile
+        ports:
+          - "5000:5000"
+        volumes:
+          - app_data:/usr/src/app/data
+          - ./config:/usr/src/app/config:ro
+    
+    volumes:
+      app_data: {}
+
+```
+
+**Layer Caching :**
+
+- Order of each command should be verified that which should be executed first so that build time can be reduced.
+
+**Multistage build :**
+-  Here is the example of multistage build
+
+  **For example -**
+  
+    ```
+    # Stage 1: Build the application
+    FROM node:14 as build-stage
+    WORKDIR /app
+    COPY package*.json ./
+    RUN npm install
+    COPY . .
+    RUN npm run build
+    
+    # Stage 2: Create a minimal runtime image
+    FROM nginx:alpine
+    COPY --from=build-stage /app/build /usr/share/nginx/html
+    EXPOSE 80
+    CMD ["nginx", "-g", "daemon off;"]
+
+    ```
+
+**Benefits of Multi-Stage Builds :**
+
+- Reduced Image Size: Only necessary files and dependencies from the build stage are included in the final image, resulting in smaller image sizes.
+
+- Improved Security: Fewer tools and dependencies in the final image reduce the attack surface.
+
+- Simplified Build Process: Streamlines the Dockerfile and build process by separating build dependencies from runtime dependencies.
+
+**Use Cases :**
+
+- Building Applications: Especially useful for compiling code, such as JavaScript, Java, Go, or any other compiled language.
+
+- Building with Dependencies: When your application has complex dependencies that are only needed at build time.
+
+- Producing Minimal Images: When you want to optimize Docker images for deployment in production environments.
