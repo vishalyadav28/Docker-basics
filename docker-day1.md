@@ -5,7 +5,7 @@ A Platform for consistently building, running, and shipping applications.
 
     ## pros
 
-        Application will work same as it's working on other machine.
+        ##Application will work same as it's working on other machine.
 
 # Problem Before Using Docker
 
@@ -45,16 +45,23 @@ What is Image?
 ## Our application is loaded inside the container.
 ## To run any project instead of normal way we can use docker to run it
 - command to up
-'docker-compose up'
+
+```
+docker-compose up
+```
 
 - command to down
-'docker-compose down'
+```
+docker-compose down
+```
 
 - to run it in background
 
-- use 
-
-'docker-compose up/down -d'
+- use
+  
+```
+docker-compose up/down -d
+```
 
 
 And we can push image to Docker registry (just like git/github)
@@ -73,17 +80,20 @@ we can push that image to make it available to use by others.
 
 Run 
 
-- "docker build -t beginner-tutorial ."
+```
+docker build -t beginner-tutorial .
+```
 
 -t means tags
 . means current directory
 
-NOTE - beginner-tutorial is tag name (you can use other)
+> **NOTE - beginner-tutorial is tag name (you can use other)**
 
 Now to view the images
 
+```
 docker image ls
-
+```
 
 NOTE - in Dockerfile
 you can define the distribution you want like
@@ -204,7 +214,7 @@ info:
 
 **Some important topic Docker**
 
-- Docker layering
+- **Docker layering**
  when we define docker-compose file then that's called layering.
 
 - Best practice is to define single process in a container.
@@ -214,17 +224,19 @@ info:
 - To provide a name to the container
     docker run -it --name container_name any_container
 
-- PORT Mapping:
+- **PORT Mapping:**
     Exposing the contaier at a praticular port so that it can be accessed outside the container.
 
-- Environment variable:
-    example - 
+- **Environment variable:**
+    **example** - 
     ```docker run --name my_custom_container -e MY_ENV_VAR=value -d nginx```
 
-- ```docker-compose up -d
- -d means detachable mode```
+```
+      docker-compose up -d
+     -d means detachable mode
+```
 
-- Docker Networking:
+- **Docker Networking:**
 
     1. Bridge (default)
     2. Host
@@ -233,19 +245,20 @@ info:
     4. ipvlan
     5. macvlan
 
-- Bridge Network
+- **Bridge Network**
     Bridge Network is the default network mode for Docker containers.
     Containers on the same bridge network can communicate with each other using their container names.
     To expose a container to the outside world (i.e., to access it from your host or another network), you need to map the container’s ports to the host’s ports using the -p or --publish option. For example, -p 8080:80 maps     port 80 in the container to port 8080 on the host.
     This means you need to explicitly expose specific ports if you want to access container services from outside the Docker host.
-- Host Network
+- **Host Network**
     Host Network mode makes the container use the host’s networking stack.
     In this mode, the container shares the network namespace with the host, so there is no need to map ports explicitly. The container’s services will be accessible on the same IP address as the host.
     For example, if a container is running a web server on port 80 and you use --network host, the web server will be accessible on port 80 of the host’s IP address.
     This can be more efficient for networking performance, but it comes with less isolation between the container and the host.
-    Summary
 
-- Compare Bridge and Host : 
+  **Summary**
+
+- **Compare Bridge and Host :**
 
     Bridge Network requires exposing containers on specific ports using port mappings.
     Host Network does not require explicit port mapping because the container shares the same network as the host.
@@ -257,10 +270,11 @@ info:
     
 #
 
-3. None:
+3. **None:**
 
     Completely isolate a container from the host and other containers.
-    for example - 
+   
+    **for example -** 
 
     ```
         docker run -it network=none container
