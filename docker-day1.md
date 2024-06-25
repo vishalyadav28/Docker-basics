@@ -281,4 +281,23 @@ info:
     ```
    > till now if you will ping the container using host and bridge it will return something...but in case of newtork=none it means you have disconnected the container from other and host also so it will run isolated.
 
+## Creating own network and connecting that with the multiple containers:
+
+Step 1:
+- create a network:
+```
+docker network create -d bridge network_name
+```
+Step 2:
+- create container1 using that network:
+```
+docker run -it --network=youtube --name container1 ubuntu
+```
+- create container2 using that network:
+```
+docker run -it --network=youtube --name container2 busybox
+```
+Step 3:
+- You can ping one conatiner with other but container must be running...
+
 
